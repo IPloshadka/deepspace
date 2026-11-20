@@ -35,6 +35,22 @@ void ds_reset(float r) {
 }
 int ds_line(void) { return current_line; }
 int ds_error(void) { return failure; }
+float ds_value(int metric) {
+    switch(metric) {
+    case DS_RANGE: return v.r;
+    case DS_VELOCITY: return v.s1;
+    case DS_PLAYER_DAMAGE: return v.d1;
+    case DS_ENEMY_DAMAGE: return v.d;
+    case DS_SHIP: return v.s;
+    case DS_SYSTEM: return v.s9;
+    case DS_PHASERS: return v.n1;
+    case DS_MISSILES: return v.n2;
+    case DS_LANCES: return v.n3;
+    case DS_TORPEDOES: return v.n4;
+    case DS_FIELD: return v.n5;
+    default: return 0;
+    }
+}
 void ds_numbers(float a,float b) {
     (void)b;
     switch(input_line) {

@@ -27,7 +27,7 @@ test-page:
 reference-test: all
 	$(PYTHON) tests/test_dialogues.py --exe build/deepspace$(EXE) --reference "$(VINTBAS)"
 web: | build
-	$(ZIG) build-exe -target wasm32-freestanding -O ReleaseSmall -fno-entry --import-symbols --export=ds_reset --export=ds_advance --export=ds_numbers --export=ds_string --export=ds_line --export=ds_error --export=ds_input_buffer --export-memory -femit-bin=web/deepspace.wasm -cflags -std=c99 -ffp-contract=off -fno-builtin -- src/game.c src/web_bridge.c
+	$(ZIG) build-exe -target wasm32-freestanding -O ReleaseSmall -fno-entry --import-symbols --export=ds_reset --export=ds_advance --export=ds_numbers --export=ds_string --export=ds_line --export=ds_value --export=ds_error --export=ds_input_buffer --export-memory -femit-bin=web/deepspace.wasm -cflags -std=c99 -ffp-contract=off -fno-builtin -- src/game.c src/web_bridge.c
 windows: | build
 	$(ZIG) cc -target x86_64-windows-gnu $(CFLAGS) $(SOURCES) -lm -o build/deepspace-windows.exe
 linux: | build
@@ -38,3 +38,12 @@ serve:
 	$(PYTHON) -m http.server 8000 --directory web
 clean:
 	rm -rf build
+
+.PHONY: test-core test-fuzz test-all
+build/test-core$(EXE): src/game.c tests/test_core.c src/deepspace.h | build
+	$(CC) $(CFLAGS) src/game.c tests/test_core.c -lm -o $@
+test-core: build/test-core$(EXE)
+	./build/test-core$(EXE)
+test-fuzz: build/test-core$(EXE)
+	./build/test-core$(EXE) --fuzz
+test-all: test test-core test-fuzz test-web test-page

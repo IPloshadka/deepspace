@@ -12,4 +12,8 @@ void ds_numbers(float first, float second);
 void ds_string(const char *text);
 int ds_line(void);
 int ds_error(void);
+/* Read-only display metrics. No UI code may modify game variables. */
+enum ds_metric { DS_RANGE, DS_VELOCITY, DS_PLAYER_DAMAGE, DS_ENEMY_DAMAGE,
+    DS_SHIP, DS_SYSTEM, DS_PHASERS, DS_MISSILES, DS_LANCES, DS_TORPEDOES, DS_FIELD };
+float ds_value(int metric);
 #endif
