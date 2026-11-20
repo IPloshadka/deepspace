@@ -1,0 +1,58 @@
+cc -std=c99 -O2 -Wall -Wextra -Wpedantic -ffp-contract=off src/game.c src/cli.c -lm -o build/deepspace
+python3 tests/test_dialogues.py --exe build/deepspace
+PASS disengage
+PASS instructions
+PASS chart
+PASS load_validation
+PASS empty_weapons
+PASS missile_depletion
+PASS torpedo_depletion
+PASS phaser_quirk
+PASS lances
+PASS self_destruct_cancel
+PASS self_destruct
+PASS velocity_limit
+PASS proceed
+PASS repeat_battle
+PASS field_persists
+PASS fractional_selector
+PASS deneb
+PASS arcturus
+PASS fixed_half
+PASS fixed_quarter
+PASS fixed_high
+PASS player_destroyed
+PASS enemy_destroyed
+23 dialogue tests passed against Vintage BASIC logs.
+./build/test-core
+PASS core: 9 loadout/depletion models, no damage from empty torpedoes, missile damage formula, full reset, I/O states
+./build/test-core --fuzz
+PASS fuzz: 2000 seeds, 6000 bounded sessions, reset/replay determinism and valid protocol/error states
+python3 tests/test_dialogues.py --exe web/deepspace.wasm --node node
+PASS disengage
+PASS instructions
+PASS chart
+PASS load_validation
+PASS empty_weapons
+PASS missile_depletion
+PASS torpedo_depletion
+PASS phaser_quirk
+PASS lances
+PASS self_destruct_cancel
+PASS self_destruct
+PASS velocity_limit
+PASS proceed
+PASS repeat_battle
+PASS field_persists
+PASS fractional_selector
+PASS deneb
+PASS arcturus
+PASS fixed_half
+PASS fixed_quarter
+PASS fixed_high
+PASS player_destroyed
+PASS enemy_destroyed
+23 dialogue tests passed against Vintage BASIC logs.
+node tests/test_page.mjs
+PASS pointer/touch button workflow and modern/retro SVG generation (mock DOM).
+PASS page handlers: load, invalid input retry, split input, victory, transcript Blob, restart, arithmetic error recovery (mock DOM, actual Wasm).
