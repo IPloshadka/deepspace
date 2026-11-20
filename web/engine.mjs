@@ -45,6 +45,7 @@ export async function createGame(bytes, onText) {
     },
     get status() { return status; },
     get line() { return wasm.ds_line(); },
+    get values() { return Array.from({length:11},(_,i)=>wasm.ds_value(i)); },
     submit(input) {
       if (!status) return 0;
       const text = input.trim();

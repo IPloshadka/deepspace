@@ -1,0 +1,72 @@
+name: Build and verify supported platforms
+on: [push, pull_request, workflow_dispatch]
+permissions:
+  contents: read
+jobs:
+  linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        bits: [32, 64]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install 32-bit C runtime and headers
+        if: matrix.bits == 32
+        run: sudo apt-get update && sudo apt-get install -y gcc-multilib
+      - name: Build and execute native tests
+        run: make test test-core test-fuzz CC="gcc -m${{ matrix.bits }}"
+      - name: Record processor format
+        run: file build/deepspace
+      - uses: actions/upload-artifact@v4
+        with:
+          name: linux-${{ matrix.bits }}
+          path: |
+            build/deepspace
+            build/test-logs/
+  windows:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compile with MSVC via CMake
+        run: |
+          cmake -S . -B build -A x64
+          cmake --build build --config Release
+      - name: Execute unit, fuzz and dialogue tests
+        run: |
+          ctest --test-dir build -C Release --output-on-failure
+          python tests/test_dialogues.py --exe build/Release/deepspace.exe
+      - uses: actions/upload-artifact@v4
+        with:
+          name: windows-64
+          path: |
+            build/Release/deepspace.exe
+            build/test-logs/
+  web:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: make test-web test-page
+      - name: Install isolated browser test tools
+        run: |
+          npm install --prefix build/browser playwright
+          npx --prefix build/browser playwright install --with-deps chromium
+      - name: Real browser keyboard, mouse and touch tests
+        run: node tests/test_browser.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: web-screenshots
+          path: build/screenshots/
