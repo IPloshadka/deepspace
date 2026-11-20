@@ -1,0 +1,1 @@
+PASS page handlers: load, invalid input retry, split input, victory, transcript Blob, restart, arithmetic error recovery (mock DOM, actual Wasm).

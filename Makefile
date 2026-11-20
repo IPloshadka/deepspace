@@ -8,7 +8,7 @@ EXE = .exe
 else
 EXE =
 endif
-.PHONY: all run test reference-test web windows linux linux-x86 clean regenerate serve test-web
+.PHONY: all run test reference-test web windows linux linux-x86 clean regenerate serve test-web test-page
 all: build/deepspace$(EXE)
 build:
 	mkdir -p build
@@ -22,6 +22,8 @@ test: all
 	$(PYTHON) tests/test_dialogues.py --exe build/deepspace$(EXE)
 test-web:
 	$(PYTHON) tests/test_dialogues.py --exe web/deepspace.wasm --node node
+test-page:
+	node tests/test_page.mjs
 reference-test: all
 	$(PYTHON) tests/test_dialogues.py --exe build/deepspace$(EXE) --reference "$(VINTBAS)"
 web: | build

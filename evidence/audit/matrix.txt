@@ -1,0 +1,1 @@
+PASS 36 additional scenarios: all 9 system/ship pairs at RND 0, .25, .5, .75; native + Wasm vs Vintage BASIC; seed 20261120.

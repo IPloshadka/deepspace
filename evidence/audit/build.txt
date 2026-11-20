@@ -1,0 +1,2 @@
+mkdir -p build
+cc -std=c99 -O2 -Wall -Wextra -Wpedantic -ffp-contract=off src/game.c src/cli.c -lm -o build/deepspace

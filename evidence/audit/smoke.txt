@@ -1,0 +1,6 @@
+Build OK. Run: ./build/deepspace
+PASS enemy_destroyed
+PASS player_destroyed
+PASS self_destruct
+PASS repeat_battle
+4 smoke checks passed. Full reference comparison: make test (Python 3 required).
