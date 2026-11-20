@@ -1,0 +1,140 @@
+[
+  {
+    "name": "disengage",
+    "input": "dialogues/disengage.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "instructions",
+    "input": "dialogues/instructions.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "chart",
+    "input": "dialogues/chart.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "load_validation",
+    "input": "dialogues/load_validation.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "empty_weapons",
+    "input": "dialogues/empty_weapons.txt",
+    "rnd": 0,
+    "note": "Original empty-lance path fires instead of printing its warning."
+  },
+  {
+    "name": "missile_depletion",
+    "input": "dialogues/missile_depletion.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "torpedo_depletion",
+    "input": "dialogues/torpedo_depletion.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "phaser_quirk",
+    "input": "dialogues/phaser_quirk.txt",
+    "rnd": 0,
+    "note": "Original phaser exhaustion bypasses the drained message."
+  },
+  {
+    "name": "lances",
+    "input": "dialogues/lances.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "self_destruct_cancel",
+    "input": "dialogues/self_destruct_cancel.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "self_destruct",
+    "input": "dialogues/self_destruct.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "velocity_limit",
+    "input": "dialogues/velocity_limit.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "proceed",
+    "input": "dialogues/proceed.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "repeat_battle",
+    "input": "dialogues/repeat_battle.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "field_persists",
+    "input": "dialogues/field_persists.txt",
+    "rnd": 0,
+    "note": "N5 is not reset between battles in the original."
+  },
+  {
+    "name": "fractional_selector",
+    "input": "dialogues/fractional_selector.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "deneb",
+    "input": "dialogues/deneb.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "arcturus",
+    "input": "dialogues/arcturus.txt",
+    "rnd": 0,
+    "note": ""
+  },
+  {
+    "name": "fixed_half",
+    "input": "dialogues/fixed_half.txt",
+    "rnd": 0.5,
+    "note": "Controlled RND fixture: only RND(0) replaced by 0.5 in temporary BASIC copy."
+  },
+  {
+    "name": "fixed_quarter",
+    "input": "dialogues/fixed_quarter.txt",
+    "rnd": 0.25,
+    "note": "Controlled RND fixture, temporary BASIC copy."
+  },
+  {
+    "name": "fixed_high",
+    "input": "dialogues/fixed_high.txt",
+    "rnd": 0.75,
+    "note": "Controlled RND fixture, temporary BASIC copy."
+  },
+  {
+    "name": "player_destroyed",
+    "input": "dialogues/player_destroyed.txt",
+    "rnd": 0,
+    "note": "Full battle ending; expected log recorded independently in Vintage BASIC."
+  },
+  {
+    "name": "enemy_destroyed",
+    "input": "dialogues/enemy_destroyed.txt",
+    "rnd": 0,
+    "note": "Full battle ending; expected log recorded independently in Vintage BASIC."
+  }
+]

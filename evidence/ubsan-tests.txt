@@ -1,0 +1,24 @@
+PASS disengage
+PASS instructions
+PASS chart
+PASS load_validation
+PASS empty_weapons
+PASS missile_depletion
+PASS torpedo_depletion
+PASS phaser_quirk
+PASS lances
+PASS self_destruct_cancel
+PASS self_destruct
+PASS velocity_limit
+PASS proceed
+PASS repeat_battle
+PASS field_persists
+PASS fractional_selector
+PASS deneb
+PASS arcturus
+PASS fixed_half
+PASS fixed_quarter
+PASS fixed_high
+PASS player_destroyed
+PASS enemy_destroyed
+23 dialogue tests passed against Vintage BASIC logs.

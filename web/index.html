@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Deepspace — 1979 / C port</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header><div class="brand"><span class="mark">✦</span><span>DEEPSPACE<small>MORE BASIC COMPUTER GAMES · 1979</small></span></div><button id="restart" disabled>Начать заново ↗</button></header>
+<main>
+<section class="intro"><p class="eyebrow">АРХИВ КОСМИЧЕСКИХ ЭКСПЕДИЦИЙ / 01</p><h1>На границе<br>звёздной империи.</h1><p>Выберите корабль, заполните трюм оружием и вступите в бой. Текст и правила оригинальной игры сохранены.</p></section>
+<section class="layout">
+<div class="console"><div class="console-top"><span><i></i> БОРТОВОЙ ТЕРМИНАЛ</span><span id="state">ЗАГРУЗКА</span></div><pre id="screen" role="log" aria-label="Диалог игры" tabindex="0"></pre><form id="input-form"><label for="answer" id="prompt">Ваш ответ</label><div class="input-row"><span>›</span><input id="answer" autocomplete="off" spellcheck="false" maxlength="255" disabled><button id="send" disabled>Отправить →</button></div><p id="hint">Подключение к кораблю…</p></form><p id="error" role="alert" hidden></p></div>
+<aside><span class="eyebrow">ПЕРЕД ВЫЛЕТОМ</span><h2>Краткая памятка</h2><p>Ответы на вопросы: <b>YES</b> или <b>NO</b> латиницей. На вопрос об оружии введите два числа через запятую.</p><div class="loadout"><span>Пробный вылет</span><code>NO → NO → 1 → 1 → 2,4</code><p>Без инструкции и списка команд; система Orion, разведчик, четыре ракеты.</p></div><h3>Команды боя</h3><dl><dt>1–5</dt><dd>Использовать оружие</dd><dt>6</dt><dd>Самоуничтожение</dd><dt>7</dt><dd>Изменить скорость</dd><dt>8</dt><dd>Выйти из боя</dd><dt>9</dt><dd>Продолжить движение</dd></dl><p class="note">Особенности версии 1979 года сохранены намеренно. Начальная относительная скорость равна нулю; изменить её можно командой 7.</p><button id="save" class="secondary" disabled>Сохранить диалог ↓</button></aside>
+</section>
+<footer><span>ОРИГИНАЛ: BASIC · ПЕРЕНОС: C</span><span>Один игровой код — терминал и браузер.</span></footer>
+</main>
+<script type="module" src="app.mjs"></script>
+</body></html>
