@@ -67,6 +67,7 @@ static uint32_t session(uint32_t seed) {
     }
     assert(status>=-1 && status<=3);
     if(status==-1) assert(ds_error()!=0);
+    for(step=DS_RANGE;step<=DS_FIELD;step++) host_number(ds_value(step));
     digest=hash_byte(digest,(unsigned char)(status+1));
     return digest;
 }

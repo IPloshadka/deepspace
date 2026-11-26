@@ -46,6 +46,28 @@ make serve
 
 Откройте <http://localhost:8000>. Сервер остановить: Ctrl+C. Готовый `web/deepspace.wasm` уже включён: для этого запуска не нужны Zig, Lua или пересборка WebAssembly. Если `python3` не найден, установите Python 3 с python.org. Двойной щелчок по `index.html` не заменяет сервер: браузер ограничивает загрузку Wasm через `file://`.
 
+## Проверка запуска именно 32-битной игры
+
+В универсальном Linux-архиве есть `bin/deepspace-linux-x86`. Из папки deepspace в JSLinux выполните:
+
+```sh
+sh check-linux-32.sh
+```
+
+Ожидаются строка `architecture=x86 pointer_bits=32 byte_order=little`, сообщение о победе и `PASS`. Это запуск **самой 32-битной игры**, даже если `uname -m` показывает x86_64. Для интерактивного боя:
+
+```sh
+./bin/deepspace-linux-x86
+```
+
+Если ядро вашей JSLinux не поддерживает исполнение 32-битных ELF, оно сообщит ошибку; не считайте такой запуск успешным. Автоматический Linux 32-bit job в GitHub Actions проверяет ту же возможность на Linux с поддержкой IA32. Из клонированного репозитория без архива готовый файл можно скачать из артефакта `linux-32` или собрать на обычном Linux с GCC multilib:
+
+```sh
+make CC="gcc -m32 -msse2 -mfpmath=sse -static"
+python3 tests/check_elf.py build/deepspace 32
+sh check-linux-32.sh build/deepspace
+```
+
 ## Быстрая проверка в JSLinux (x86_64 или x86)
 
 В обновлённом комплекте достаточно выполнить из папки deepspace:
@@ -149,7 +171,7 @@ make linux-x86
 
 ## Публикация и сдача
 
-Публичный репозиторий создан: [IPloshadka/deepspace](https://github.com/IPloshadka/deepspace). Исходники, эталонные диалоги и настоящая локальная история изменений подготовлены. Для сохранения истории используйте отдельный файл `deepspace-history.bundle` и [инструкцию публикации](docs/PUBLISH.md). Простая загрузка ZIP на GitHub не переносит историю коммитов.
+Публичный репозиторий: [IPloshadka/deepspace](https://github.com/IPloshadka/deepspace). Для проверки версии и запусков используйте вкладки Commits и Actions. Для сохранения истории используйте отдельный файл `deepspace-history.bundle` и [инструкцию публикации](docs/PUBLISH.md). Простая загрузка ZIP на GitHub не переносит историю коммитов.
 
 Оригинал принадлежит его авторам; источники указаны в [SOURCE.md](original/SOURCE.md). Перенос не меняет права на оригинальный текст. Лицензия, разрешающая произвольное использование всего комплекта, здесь не заявляется.
 
