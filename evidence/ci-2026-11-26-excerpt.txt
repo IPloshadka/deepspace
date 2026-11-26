@@ -1,0 +1,14 @@
+linux (32)	Build and execute native tests	2026-11-26T03:09:29.4413155Z EXECUTED GAME: architecture=x86 pointer_bits=32 byte_order=little
+linux (32)	Build and execute native tests	2026-11-26T03:09:29.6517303Z 23 dialogue tests passed against Vintage BASIC logs.
+linux (32)	Build and execute native tests	2026-11-26T03:09:29.9579961Z PASS core: 9 loadout/depletion models, no damage from empty torpedoes, missile damage formula, full reset, I/O states
+linux (32)	Build and execute native tests	2026-11-26T03:09:29.9694103Z PASS fuzz: 2000 seeds, 6000 bounded sessions, reset/replay determinism and valid protocol/error states
+linux (32)	Record processor format	2026-11-26T03:09:30.0267658Z build/deepspace: ELF 32-bit LSB executable, Intel 80386, version 1 (GNU/Linux), statically linked, BuildID[sha1]=434cbdb0e75989c0399a2af8ef2c7dcbe69ac21b, for GNU/Linux 3.2.0, not stripped
+web	Run make test-web test-page	2026-11-26T03:09:04.6578627Z 23 dialogue tests passed against Vintage BASIC logs.
+web	Real browser keyboard, mouse and touch tests	2026-11-26T03:09:27.9593495Z PASS real Chromium: keyboard victory, mouse-only game, touch-only game, download, reset, mobile layout, modern and retro screenshots.
+linux (64)	Build and execute native tests	2026-11-26T03:09:13.7862729Z EXECUTED GAME: architecture=x86_64 pointer_bits=64 byte_order=little
+linux (64)	Build and execute native tests	2026-11-26T03:09:14.1110717Z 23 dialogue tests passed against Vintage BASIC logs.
+linux (64)	Build and execute native tests	2026-11-26T03:09:14.3579009Z PASS core: 9 loadout/depletion models, no damage from empty torpedoes, missile damage formula, full reset, I/O states
+linux (64)	Build and execute native tests	2026-11-26T03:09:14.3679841Z PASS fuzz: 2000 seeds, 6000 bounded sessions, reset/replay determinism and valid protocol/error states
+linux (64)	Record processor format	2026-11-26T03:09:14.4974373Z build/deepspace: ELF 64-bit LSB executable, x86-64, version 1 (GNU/Linux), statically linked, BuildID[sha1]=e9cabb7bd1f6b823d5fec98f1ec5a33883634da5, for GNU/Linux 3.2.0, not stripped
+windows	Execute unit, fuzz and dialogue tests	2026-11-26T03:09:27.7748912Z 100% tests passed, 0 tests failed out of 2
+windows	Execute unit, fuzz and dialogue tests	2026-11-26T03:09:29.4336647Z 23 dialogue tests passed against Vintage BASIC logs.
