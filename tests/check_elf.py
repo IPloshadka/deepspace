@@ -1,5 +1,6 @@
 """Assert actual ELF class and CPU architecture before executing test binaries."""
 import argparse
+import subprocess
 from pathlib import Path
 p=argparse.ArgumentParser();p.add_argument('binary',type=Path);p.add_argument('bits',type=int,choices=[32,64]);a=p.parse_args()
 header=a.binary.read_bytes()[:20]
@@ -9,3 +10,7 @@ assert header[5]==1, 'expected little-endian x86 ELF'
 machine=int.from_bytes(header[18:20],'little')
 assert machine=={32:3,64:62}[a.bits], 'wrong ELF CPU type'
 print('VERIFIED ELF%d, CPU %s, little-endian: %s'%(a.bits,'i386' if a.bits==32 else 'x86_64',a.binary))
+
+result=subprocess.run([str(a.binary.resolve()),'--platform'],text=True,capture_output=True,check=True)
+assert 'pointer_bits='+str(a.bits) in result.stdout, 'runtime pointer width mismatch'
+print('EXECUTED GAME:',result.stdout.strip())

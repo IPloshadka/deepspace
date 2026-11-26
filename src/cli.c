@@ -6,6 +6,7 @@
 #include <math.h>
 #include <ctype.h>
 #include <errno.h>
+#include <limits.h>
 static int column;
 void host_text(const char *s) {
     while(*s) { putchar(*s); column=(*s=='\n')?0:column+1; ++s; }
@@ -40,13 +41,29 @@ static int number(char **cursor,float *value) {
 }
 int main(int argc,char **argv) {
     float random=0;
+    if(argc==2 && !strcmp(argv[1],"--platform")) {
+        const unsigned short word=1;
+        const char *arch=
+#if defined(__i386__) || defined(_M_IX86)
+            "x86";
+#elif defined(__x86_64__) || defined(_M_X64)
+            "x86_64";
+#elif defined(__aarch64__) || defined(_M_ARM64)
+            "arm64";
+#else
+            "other";
+#endif
+        printf("architecture=%s pointer_bits=%u byte_order=%s\n",arch,
+            (unsigned)(sizeof(void*)*CHAR_BIT),*(const unsigned char *)&word?"little":"big");
+        return 0;
+    }
     if(argc==3 && !strcmp(argv[1],"--rnd")) {
         char *p=argv[2];
         if(!number(&p,&random) || *p || random<0 || random>=1) {
             fprintf(stderr,"--rnd requires 0 <= value < 1\n");return 2;
         }
     } else if(argc!=1) {
-        fprintf(stderr,"Usage: %s [--rnd VALUE]\n",argv[0]);return 2;
+        fprintf(stderr,"Usage: %s [--rnd VALUE | --platform]\n",argv[0]);return 2;
     }
     ds_reset(random);
     for(;;) {
