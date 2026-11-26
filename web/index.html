@@ -10,8 +10,8 @@
 <main>
 <section class="intro"><p class="eyebrow">АРХИВ КОСМИЧЕСКИХ ЭКСПЕДИЦИЙ / 01</p><h1>На границе<br>звёздной империи.</h1><p>Выберите корабль, заполните трюм оружием и вступите в бой. Текст и правила оригинальной игры сохранены.</p></section>
 <section class="battle-view" aria-label="Визуализация боя">
-<label for="display-mode">Отображение</label><select id="display-mode"><option value="modern">Графическая схема</option><option value="retro">Ретро-стиль</option><option value="terminal">Только терминал</option></select>
-<div id="battle-panel"></div><p class="note">Схема показывает состояние оригинальной игры. Ретро-стиль — оформление страницы, не эмуляция видеорежима старого компьютера.</p>
+<label for="display-mode">Отображение</label><select id="display-mode"><option value="modern">Графическая схема</option><option value="retro">Ретро 320×200</option><option value="terminal">Только терминал</option></select>
+<div id="battle-panel"></div><canvas id="retro-panel" width="320" height="200" role="img" aria-label="Ретро-схема боя 320 на 200 пикселей"></canvas><p class="note">Схема показывает состояние оригинальной игры. Ретро-режим — программный кадровый буфер 320×200 с четырьмя цветами палитры CGA.</p>
 </section>
 <section class="layout">
 <div class="console"><div class="console-top"><span><i></i> БОРТОВОЙ ТЕРМИНАЛ</span><span id="state">ЗАГРУЗКА</span></div><pre id="screen" role="log" aria-label="Диалог игры" tabindex="0"></pre><form id="input-form"><label for="answer" id="prompt">Ваш ответ</label><div class="input-row"><span>›</span><input id="answer" autocomplete="off" spellcheck="false" maxlength="255" disabled><button id="send" disabled>Отправить →</button></div><div id="choices" aria-label="Ответы мышью или касанием"></div><p id="hint">Подключение к кораблю…</p></form><p id="error" role="alert" hidden></p></div>

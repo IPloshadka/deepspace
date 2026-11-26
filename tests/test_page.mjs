@@ -2,7 +2,7 @@
 import fs from 'node:fs/promises';
 import assert from 'node:assert/strict';
 const elements=new Map();
-for(const id of ['screen','answer','send','error','restart','save','state','hint','input-form','choices','battle-panel','display-mode'])elements.set('#'+id,{textContent:'',value:'',disabled:true,hidden:true,handlers:{},children:[],replaceChildren(){this.children=[];},append(child){this.children.push(child);},focus(){},addEventListener(name,fn){this.handlers[name]=fn;}});
+for(const id of ['screen','answer','send','error','restart','save','state','hint','input-form','choices','battle-panel','display-mode','retro-panel'])elements.set('#'+id,{textContent:'',value:'',disabled:true,hidden:true,handlers:{},getContext(){return {createImageData:(w,h)=>({data:new Uint8ClampedArray(w*h*4)}),putImageData(){}};},children:[],replaceChildren(){this.children=[];},append(child){this.children.push(child);},focus(){},addEventListener(name,fn){this.handlers[name]=fn;}});
 let download;
 globalThis.window={matchMedia:()=>({matches:true})};
 globalThis.document={body:{classList:{toggle(){}}},querySelector:id=>elements.get(id),createElement:()=>({handlers:{},addEventListener(name,fn){this.handlers[name]=fn;},click(){if(this.download)download={href:this.href,name:this.download};else this.handlers.click();}})};
@@ -36,3 +36,10 @@ el('display-mode').value='retro';el('display-mode').handlers.change();
 assert.match(el('battle-panel').innerHTML,/#73ff77/);
 console.log('PASS pointer/touch button workflow and modern/retro SVG generation (mock DOM).');
 console.log('PASS page handlers: load, invalid input retry, split input, victory, transcript Blob, restart, arithmetic error recovery (mock DOM, actual Wasm).');
+
+const {retroPixels,PALETTE,WIDTH,HEIGHT}=await import('../web/retro.mjs');
+const pixels=retroPixels([500,0,20,60]);assert.equal(pixels.length,320*200*4);
+const allowed=new Set(PALETTE.map(c=>c.join(',')));
+for(let i=0;i<pixels.length;i+=4){assert.equal(pixels[i+3],255);assert.ok(allowed.has(Array.from(pixels.slice(i,i+3)).join(',')));}
+assert.equal(WIDTH,320);assert.equal(HEIGHT,200);
+console.log('PASS retro framebuffer: 320x200 pixels, palette constraint, opaque RGBA.');

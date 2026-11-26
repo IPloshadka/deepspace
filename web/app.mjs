@@ -1,5 +1,6 @@
 import {createGame} from './engine.mjs';
 import {renderPanel,choices} from './panel.mjs';
+import {drawRetro} from './retro.mjs';
 const screen=document.querySelector('#screen'),input=document.querySelector('#answer'),send=document.querySelector('#send'),error=document.querySelector('#error');
 const restart=document.querySelector('#restart'),save=document.querySelector('#save');
 const choicePanel=document.querySelector('#choices'),battlePanel=document.querySelector('#battle-panel'),displayMode=document.querySelector('#display-mode');
@@ -9,6 +10,7 @@ function draw(){
   document.body.classList.toggle('retro',mode==='retro');
   document.body.classList.toggle('terminal-only',mode==='terminal');
   battlePanel.innerHTML=renderPanel(game.values,mode==='retro');
+  drawRetro(document.querySelector('#retro-panel'),game.values);
   choicePanel.replaceChildren();
   if(game.status>0)for(const [value,label] of choices(game.line,game.values[4])){
     const button=document.createElement('button');button.type='button';button.textContent=label;
